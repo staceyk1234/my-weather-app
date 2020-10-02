@@ -38,6 +38,14 @@
   text-align: center;
 }
 
+.active {
+  color: crimson;
+  cursor: default;
+}
+.active:hover {
+  text-decoration: none;
+}
+
 #current-time {
   color: crimson;
 }
