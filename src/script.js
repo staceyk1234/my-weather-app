@@ -1,13 +1,13 @@
 // Change current date and time when reloaded
 function formatDate() {
-  let now = new Date();
+  let date = new Date();
 
   let currentDayTime = document.querySelector("#current-day-time");
 
-  let todaysDate = now.getDate();
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-  let year = now.getFullYear();
+  let todaysDate = date.getDate();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let year = date.getFullYear();
 
   let days = [
     "Sunday",
@@ -19,7 +19,7 @@ function formatDate() {
     "Saturday",
   ];
 
-  let day = days[now.getDay()];
+  let day = days[date.getDay()];
 
   let months = [
     "Jan",
@@ -36,7 +36,7 @@ function formatDate() {
     "Dec",
   ];
 
-  let month = months[now.getMonth()];
+  let month = months[date.getMonth()];
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -50,18 +50,18 @@ formatDate();
 function displayWeatherCondition(response) {
   let temperatureElement = document.querySelector("#temp");
   let cityElement = document.querySelector("#current-city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
-  document.querySelector("#current-city").innerHTML = response.data.name;
+
   celsiusTemperature = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
-
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
