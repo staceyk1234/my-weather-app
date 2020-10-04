@@ -65,6 +65,24 @@
   text-transform: capitalize;
 }
 
+.weather-forecast strong {
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  height: 15px;
+  line-height: 15px;
+  padding-top: 7px;
+}
+
+.weather-forecast img {
+  display: block;
+  margin: 0 auto;
+  height: 50px;
+  width: 50px;
+  padding: 0%;
+}
+
 h1,
 h2,
 h3,
@@ -115,9 +133,4 @@ footer {
   text-align: center;
   font-size: 15px;
   color: black;
-}
-
-.main-icon {
-  display: block;
-  margin: 0 auto;
 }
