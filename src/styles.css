@@ -22,15 +22,23 @@
 
 .col-6-spec {
   margin-top: 80px;
+  margin-left: 100px;
   text-align: right;
 }
 
 .specs {
+  margin-left: 80px;
   text-align: center;
 }
 
-.bi-cloud {
-  width: 100%;
+.main-icon {
+  display: block;
+  margin-left: 50px;
+  width: 75%;
+  padding: none;
+}
+
+.row {
   text-align: center;
 }
 
