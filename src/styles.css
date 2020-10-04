@@ -116,3 +116,8 @@ footer {
   font-size: 15px;
   color: black;
 }
+
+.main-icon {
+  display: block;
+  margin: 0 auto;
+}
