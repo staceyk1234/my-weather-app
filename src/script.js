@@ -1,8 +1,6 @@
 // Change current date and time when reloaded
-function formatDate() {
-  let date = new Date();
-
-  let currentDayTime = document.querySelector("#current-day-time");
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
 
   let todaysDate = date.getDate();
   let hours = date.getHours();
@@ -37,12 +35,21 @@ function formatDate() {
   ];
 
   let month = months[date.getMonth()];
+  return `${day} ${month} ${todaysDate} ${year}, ${formatHours(timestamp)}`;
+}
 
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
 
-  currentDayTime.innerHTML = `${day} ${month} ${todaysDate}, ${year}, ${hours}:${minutes}`;
+  return `${hours}:${minutes}`;
 }
 formatDate();
 
@@ -53,6 +60,7 @@ function displayWeatherCondition(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#current-day-time");
   let iconElement = document.querySelector("#icon");
 
   celsiusTemperature = response.data.main.temp;
@@ -62,6 +70,7 @@ function displayWeatherCondition(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -78,7 +87,7 @@ function displayForecast(response) {
   forecastElement.innerHTML = `
     <div class="col-2">
       <p>
-        <strong>21:00</strong>
+        <strong>${formatHours(forecast.dt * 1000)}</strong>
       </p>
     <img
         src="http://openweathermap.org/img/wn/${
