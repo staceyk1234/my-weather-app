@@ -79,10 +79,11 @@ function displayWeatherCondition(response) {
 // F
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  let forecast = response.data.list[0];
-  console.log(forecast);
+  let forecast = null;
 
-  forecastElement.innerHTML = `
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
     <div class="col-2">
       <p>
         <strong>${formatHours(forecast.dt * 1000)}</strong>
@@ -97,6 +98,7 @@ function displayForecast(response) {
       </div>
     </div>
 `;
+  }
 }
 
 function searchCity(city) {
