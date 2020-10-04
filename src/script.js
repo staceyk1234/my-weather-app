@@ -3,8 +3,6 @@ function formatDate(timestamp) {
   let date = new Date(timestamp);
 
   let todaysDate = date.getDate();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
   let year = date.getFullYear();
 
   let days = [
